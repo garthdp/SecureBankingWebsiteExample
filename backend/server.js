@@ -11,17 +11,10 @@ const path = require('path')
 // const cookieParser = require('cookie-parser')
 
 //imports
-const bookRoutes = require('./routes/books')
 const userRoutes = require('./routes/users')
 
 //creating express package
 const app = express()
-
-//setting up routes
-//'/' for url request, req is the request, res is the response
-// app.get('/', (req, res) =>{
-//     res.json({msg: "Testing 123- just figuring this out!"})
-// })
 
 //sanitize json requests
 app.use(express.json())
@@ -49,7 +42,6 @@ app.use(express.json())
 //     next()
 // })
 
-app.use('/api/books', bookRoutes)
 app.use('/api/users', userRoutes)
 
 //creatng ssl server
@@ -68,7 +60,3 @@ mongoose.connect(process.env.MONGO_URI)
 .catch((error)=>{
     console.log(error)
 })
-// listens for requests from specific port
-// app.listen(process.env.PORT, ()=> {
-//     console.log('Listening on port 3000')
-// })
