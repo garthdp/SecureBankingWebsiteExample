@@ -1,21 +1,20 @@
 import { useState } from "react"
-import {useLogin} from "../hooks/useLogin"
-import { Link  } from "react-router-dom"
+import {useSignup} from "../hooks/useSignup"
 
-const Login = () => {
+const Signup = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const {login, isLoading, error} = useLogin()
+    const {signup, isLoading, error} = useSignup()
 
     const handleSubmit = async(e) => {
         e.preventDefault() //do not refresh page on submit
-        await login(email, password)
+        await signup(email, password)
     }
 
     return (
         <form className="login" onSubmit={handleSubmit}>
-            <h3>Login</h3>
+            <h3>Sign up</h3>
 
             <label>Email:</label>
             <input 
@@ -27,12 +26,9 @@ const Login = () => {
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}/>
-            <button disabled={isLoading}>Login</button><br/>
-            <Link to="/signup">
-                <button type="button">Sign up</button>
-            </Link>
+            <button disabled={isLoading}>Sign up</button>
             {error && <div className="error">{error}</div>}
         </form>
     )
 }
-export default Login
+export default Signup
