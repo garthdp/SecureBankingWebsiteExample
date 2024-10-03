@@ -44,7 +44,7 @@ const signupUser = async(req, res) => {
             maxAge: 3 * 24 * 60 * 60 * 60 * 1000, //days, hours, minutes, seconds, milliseconds
             sameSite: 'Strict'
         })
-        res.status(200).json({email})
+        res.status(200).json({ok: "Account created."})
     }catch (error){
         res.status(400).json({error: error.message})
     }

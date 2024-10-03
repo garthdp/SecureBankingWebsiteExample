@@ -6,6 +6,7 @@ import { useAuthContext } from './useAuthContext'
 
 export const useSignup = () => {
     const [error, setError] = useState(null)
+    const [ok, setOk] = useState(null)
     const [isLoading, setIsLoading] = useState(null)
     const {dispatch} = useAuthContext()
 
@@ -26,14 +27,9 @@ export const useSignup = () => {
         }
 
         if(response.ok){
-            //1. update the auth context with email
-            //2. update isLoading to false
-            //3. update our jsonwebtoken. if user closes then opens, they still logged in
-            localStorage.setItem('user', JSON.stringify(json))
-            // we have to store strings inside localstorage so we convert json object to string
-            dispatch({type: 'SIGNUP', payload: json})
+            setOk(json.ok)
             setIsLoading(false)
         }
     }
-    return {signup, isLoading, error}
+    return {signup, isLoading, error, ok}
 }

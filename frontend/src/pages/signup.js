@@ -5,7 +5,7 @@ const Signup = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const {signup, isLoading, error} = useSignup()
+    const {signup, isLoading, error, ok} = useSignup()
 
     const handleSubmit = async(e) => {
         e.preventDefault() //do not refresh page on submit
@@ -28,6 +28,7 @@ const Signup = () => {
                 value={password}/>
             <button disabled={isLoading}>Sign up</button>
             {error && <div className="error">{error}</div>}
+            {ok && <div className="ok">{ok}</div>}
         </form>
     )
 }

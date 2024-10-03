@@ -9,6 +9,7 @@
 --background: #ecf0f1; /* Light grey */
 --header-bg: #eee1e1; /* White */
 --text-color: #2c3e50;
+--ok: #26F801;
 }
 
 body {
@@ -126,6 +127,13 @@ div.error {
   padding: 10px;
   border: 1px solid var(--error);
   color: var(--error);
+  border-radius: 4px;
+  margin: 20px 0
+}
+div.ok {
+  padding: 10px;
+  border: 1px solid var(--ok);
+  color: var(--ok);
   border-radius: 4px;
   margin: 20px 0
 }
