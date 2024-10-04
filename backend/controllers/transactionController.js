@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 //get books
 const getTransactions = async(req, res) => {
-    const {providerEmail} = req.body
+    const {providerEmail} = req.query
     try{
         const transactions = await Transactions.find({providerEmail}).sort({createAt: -1})
 
