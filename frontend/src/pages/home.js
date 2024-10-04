@@ -24,12 +24,13 @@ const Home = () => {
 
     return (
         <div className="Home">
+            <TransactionForm />
+            <h2>Previous Transactions</h2>
             <div className="books">
                 {transactions && transactions.map((transaction) => (
                     <TransactionDetails key={transaction._id} transaction={transaction}/>
                 ))}
             </div>
-            <TransactionForm />
         </div>
     )
 }
