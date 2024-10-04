@@ -12,6 +12,7 @@ const path = require('path')
 
 //imports
 const userRoutes = require('./routes/users')
+const transactionRoutes = require('./routes/transactions')
 
 //creating express package
 const app = express()
@@ -43,6 +44,7 @@ app.use(express.json())
 // })
 
 app.use('/api/users', userRoutes)
+app.use('/api/transaction', transactionRoutes)
 
 //creatng ssl server
 const sslServer = https.createServer({
