@@ -8,11 +8,11 @@ import { TransactionsContextProvider } from './context/TransactionsContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AuthContextProvider>
-      <TransactionsContextProvider>
-        <App />
-      </TransactionsContextProvider>
-    </AuthContextProvider>
+      <AuthContextProvider>
+        <TransactionsContextProvider>
+          <App />
+        </TransactionsContextProvider>
+      </AuthContextProvider>
   </React.StrictMode>
 );
 

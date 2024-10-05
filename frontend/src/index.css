@@ -77,7 +77,7 @@ header h1 {
 }
 
 /* Homepage */
-.book-details {
+.transaction-details {
   background: #333; 
   border-radius: 8px; 
   margin: 20px auto;
@@ -86,13 +86,13 @@ header h1 {
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); 
 }
 
-.book-details h4 {
+.transaction-details h4 {
   margin: 0 0 10px 0;
   font-size: 1.2em;
   color: var(--primary); 
 }
 
-.book-details p {
+.transaction-details p {
   margin: 0;
   font-size: 0.9em;
   color: #aaa; 
@@ -146,7 +146,7 @@ input:focus {
 
 /* Button styles */
 form button,
-.book-details button {
+.transaction-details button {
   background: var(--primary);
   border: 0;
   color: white;
@@ -158,18 +158,18 @@ form button,
 }
 
 form button:hover,
-.book-details button:hover {
+.transaction-details button:hover {
   background: #1a8b8c; /* Darker shade on hover */
 }
 
 form button:active,
-.book-details button:active {
+.transaction-details button:active {
   background: #1a5b5c; /* Darker shade when button is pressed */
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4); /* Inset shadow for active state */
 }
 
 /* Error message color */
-.book-details span {
+.transaction-details span {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -209,7 +209,7 @@ nav button {
   .home {
     grid-template-columns: 1fr; /* Stack columns on smaller screens */
   }
-  .book-details {
+  .transaction-details {
     margin: 10px; /* Reduce margin on smaller screens */
   }
 

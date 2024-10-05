@@ -11,7 +11,7 @@ function App() {
       <Navbar />
         <div className='pages'>
           <Routes>
-            <Route path='/transaction' element={<Home/>}/>
+            <Route path='/' element={<Home/>}/>
           </Routes>
           <Routes>
             <Route path='/login' element={<Login/>}/>

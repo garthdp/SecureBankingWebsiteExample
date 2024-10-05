@@ -5,20 +5,18 @@ import { useTransactionsContext } from "../hooks/useTransactionsContext";
 
 const Home = () => {
     const { transactions, dispatch } = useTransactionsContext();
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [email, setEmail] = useState('')
 
     useEffect(() => {
         const user = localStorage.getItem('user');
-        const email = user ? JSON.parse(user).email : null;
+        const storedEmail = user ? JSON.parse(user).email : null;
 
-        if (email) {
+        if (storedEmail) {
+            setEmail(storedEmail); // Set the email state if it exists
+            
             const fetchTransactions = async () => {
-                setLoading(true);
-                setError(null);
-                
                 try {
-                    const response = await fetch(`api/transaction?providerEmail=${email}`);
+                    const response = await fetch(`api/transaction?providerEmail=${storedEmail}`);
                     
                     if (!response.ok) {
                         throw new Error("Failed to fetch transactions");
@@ -27,31 +25,33 @@ const Home = () => {
                     const json = await response.json();
                     dispatch({ type: 'SET_TRANSACTIONS', payload: json });
                 } catch (err) {
-                    setError(err.message);
-                } finally {
-                    setLoading(false);
+                    console.log(err);
                 }
             };
-
             fetchTransactions();
-        } else {
-            setLoading(false); // No email found, stop loading
         }
     }, [dispatch]);
 
-    return (
-        <div className="Home">
-            <TransactionForm />
-            <h2>Previous Transactions</h2>
-            {loading && <p>Loading transactions...</p>}
-            {error && <div className="error">{error}</div>}
-            <div className="books">
-                {transactions && transactions.map((transaction) => (
-                    <TransactionDetails key={transaction._id} transaction={transaction} />
-                ))}
+    if(email){
+        return (
+            <div className="Home">
+                <TransactionForm />
+                <h2>Previous Transactions</h2>
+                <div className="books">
+                    {transactions && transactions.map((transaction) => (
+                        <TransactionDetails key={transaction._id} transaction={transaction} />
+                    ))}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
+    else{
+        return (
+            <div className="Home">
+                <h1>Please sign in first</h1>
+            </div>
+        )
+    }
 };
 
 export default Home;

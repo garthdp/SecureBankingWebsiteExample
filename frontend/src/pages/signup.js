@@ -8,7 +8,7 @@ const Signup = () => {
     const [accountNumber, setAccountNumber] = useState('');
     const [email, setEmail] = useState(''); // Added email state
     const [password, setPassword] = useState('');
-    const { signup, isLoading, error, successMessage } = useSignup();
+    const { signup, isLoading, error, ok } = useSignup();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -69,7 +69,7 @@ const Signup = () => {
 
             <button disabled={isLoading}>Sign up</button>
             {error && <div className="error">{error}</div>}
-            {successMessage && <div className="success">{successMessage}</div>}
+            {ok && <div className="ok">{ok}</div>}
         </form>
     );
 };

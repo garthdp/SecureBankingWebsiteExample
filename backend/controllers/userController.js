@@ -30,9 +30,9 @@ const loginUser = async(req, res) => {
 
 //sign up user
 const signupUser = async(req, res) => {
-    const {email, password} = req.body
+    const {name, surname, idNumber, accountNumber, email, password} = req.body
     try{
-        const user = await User.signup(email, password)
+        const user = await User.signup(name, surname, idNumber, accountNumber, email, password)
 
         // after sign up, but just before reponse form server
         const token = createToken(user._id)

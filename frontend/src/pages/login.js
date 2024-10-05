@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { login, isLoading, error } = useLogin();
+    const { login, isLoading, error, ok } = useLogin();
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent page refresh on submit
@@ -40,11 +40,11 @@ const Login = () => {
                 required // Ensure the field is required
             />
             <button disabled={isLoading}>{isLoading ? "Logging in..." : "Login"}</button> {/* Loading feedback */}
-            <br />
             <Link to="/signup">
                 <button type="button">Sign up</button>
             </Link>
             {error && <div className="error">{error}</div>}
+            {ok && <div className="ok">{ok}</div>}
         </form>
     );
 };

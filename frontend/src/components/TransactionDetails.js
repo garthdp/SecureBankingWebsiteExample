@@ -3,7 +3,7 @@ import formatDistanceToNow from "date-fns/formatDistanceToNow"
 const TransactionDetails = ({transaction}) => {
     console.log(transaction)
     return (
-        <div className="book-details">
+        <div className="transaction-details">
             <h4>{transaction.title}</h4>
             <p><strong>Amount: </strong>{transaction.amount}</p><br></br>
             <p><strong>Currency: </strong>{transaction.currency}</p><br></br>
