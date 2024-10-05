@@ -7,8 +7,6 @@ const mongoose = require('mongoose')
 const https = require('https')
 const fs = require('fs')
 const path = require('path')
-// const csrf = require('csurf')
-// const cookieParser = require('cookie-parser')
 
 //imports
 const userRoutes = require('./routes/users')
@@ -19,29 +17,17 @@ const app = express()
 
 //sanitize json requests
 app.use(express.json())
-// app.use(cookieParser())
 
-
-// //set up csurf middleware
-// app.use(csrf({
-//     cookie:{
-//         httpOnly: true,
-//         secure: process.env.NODE_ENV === 'production',
-//         sameSite: 'Lax'//strict and none
-//     }
-// }))
-
-// we need to update our api to use csrf toke since we dont have a login yet we create a call
-// app.get('/api/csrf-token', (res, req) => {
-//     res.json({csrfToken: req.csrfToken})
-// })
-
-// //middleware to expose csurf token in response
-// app.use((req, res, next) =>{
-//     res.locals.csrfToken = req.csrfToken()
-//     console.log(req.path, req.method)
-//     next()
-// })
+// Clickjacking protection middleware
+//code attribution
+// link = https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html
+// link = https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html
+// used for = to add click jacking protection
+app.use((req, res, next) => {
+    res.setHeader("X-Frame-Options", "DENY");
+    res.setHeader("Content-Security-Policy", "frame-ancestors 'self'");
+    next();
+});
 
 app.use('/api/users', userRoutes)
 app.use('/api/transaction', transactionRoutes)

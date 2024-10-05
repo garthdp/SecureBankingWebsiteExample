@@ -1,48 +1,55 @@
-import { useState } from "react";
-import { useLogin } from "../hooks/useLogin";
-import { Link } from "react-router-dom";
+import { useState } from "react"
+import { useLogin } from "../hooks/useLogin"
+import { Link } from "react-router-dom"
+import { useFormik } from 'formik'
+import { userSchema } from "../schemas/index"
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const { login, isLoading, error, ok } = useLogin();
+    const { login, isLoading, error, ok } = useLogin()
 
-    const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevent page refresh on submit
+    const onSubmit = async (values, actions) => {
+        console.log("HELLOO")
+        await login(values.email, values.password)
+    };    
 
-        // Basic validation
-        if (!email || !password) {
-            alert("Please fill in all fields."); // Alert the user if fields are empty
-            return;
-        }
-
-        await login(email, password);
-    };
+    const {values, errors, handleChange, handleSubmit} = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+        },
+        validationSchema: userSchema,
+        onSubmit,
+    })
 
     return (
         <form className="login" onSubmit={handleSubmit}>
             <h3>Login</h3>
 
-            <label htmlFor="email">Email:</label>
+            <label>Email:</label>
             <input 
                 type="email"
-                id="email" // Added id for better accessibility
-                onChange={(e) => setEmail(e.target.value)}
-                value={email} 
-                required // Ensure the field is required
+                onChange={handleChange}
+                value={values.email}
+                id="email"
+                required
+                className={errors.email ? "input-error" : ""}
             />
-            <label htmlFor="password">Password:</label>
+            {errors.email && <p className="error">{errors.email}</p>}
+
+            <label>Password:</label>
             <input 
                 type="password"
-                id="password" // Added id for better accessibility
-                onChange={(e) => setPassword(e.target.value)}
-                value={password} 
-                required // Ensure the field is required
+                onChange={handleChange}
+                value={values.password}
+                id="password"
+                required
+                className={errors.name ? "input-error" : ""}
             />
-            <button disabled={isLoading}>{isLoading ? "Logging in..." : "Login"}</button> {/* Loading feedback */}
+            {errors.name && <p className="error">{errors.name}</p>}
+            <button type="submit" disabled={isLoading}>{isLoading ? "Logging in..." : "Login"}</button>
             <Link to="/signup">
                 <button type="button">Sign up</button>
-            </Link>
+            </Link> 
             {error && <div className="error">{error}</div>}
             {ok && <div className="ok">{ok}</div>}
         </form>

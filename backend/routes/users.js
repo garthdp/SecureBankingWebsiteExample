@@ -18,7 +18,7 @@ const router = express.Router()
 router.post('/login', bruteforce.prevent, loginUser)
 
  // signup
-router.post('/signup', signupUser)
+router.post('/signup', bruteforce.prevent, signupUser)
 
  // signup
  router.get('/logout', logoutUser)
