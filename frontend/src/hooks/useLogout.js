@@ -1,14 +1,21 @@
-import { useAuthContext } from '../hooks/useAuthContext'
+import { useAuthContext } from '../hooks/useAuthContext';
+import { useNavigate } from 'react-router-dom';  // Import useNavigate to handle navigation
 
-// keeping track of our context for session managemnent
-//we need to know when the user is logged in or out
-
+// Keeping track of our context for session management
 export const useLogout = () => {
-    const {dispatch} = useAuthContext()
+    const { dispatch } = useAuthContext();
+    const navigate = useNavigate();  // Initialize useNavigate
 
     const logout = () => {
-        localStorage.removeItem('user')
-        dispatch({type: 'LOGOUT'})
-    }
-    return {logout}
-}
+        // Remove user from localStorage
+        localStorage.removeItem('user');
+        
+        // Dispatch the logout action to update the context
+        dispatch({ type: 'LOGOUT' });
+        
+        // Redirect to the login page after logging out
+        navigate('/login');
+    };
+
+    return { logout };
+};

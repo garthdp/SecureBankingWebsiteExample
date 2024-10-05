@@ -1,30 +1,38 @@
-import { useState } from "react"
+
 import { useLogin } from "../hooks/useLogin"
 import { Link } from "react-router-dom"
 import { useFormik } from 'formik'
 import { userSchema } from "../schemas/index"
 
+  
+
 const Login = () => {
-    const { login, isLoading, error, ok } = useLogin()
+    const { login, error, ok } = useLogin()
 
-    const onSubmit = async (values, actions) => {
-        console.log("HELLOO")
-        await login(values.email, values.password)
-    };    
+    
+const onSubmit = async (values, actions) => {
+    console.log(values);
+    console.log(actions);
+    //await new Promise((resolve) => setTimeout(resolve, 1000));
+    
+    await login(values.email, values.password)
+};  
 
-    const {values, errors, handleChange, handleSubmit} = useFormik({
+    const {values, errors,touched,isSubmitting,handleBlur, handleChange, handleSubmit} = useFormik({
         initialValues: {
             email: '',
             password: '',
         },
         validationSchema: userSchema,
         onSubmit,
-    })
+    });
+
+   //console.log(errors);
 
     return (
         <form className="login" onSubmit={handleSubmit}>
             <h3>Login</h3>
-
+           
             <label>Email:</label>
             <input 
                 type="email"
@@ -32,9 +40,11 @@ const Login = () => {
                 value={values.email}
                 id="email"
                 required
-                className={errors.email ? "input-error" : ""}
+                onBlur={handleBlur}
+                className={errors.email && touched.email ? "input-error" : ""}
             />
-            {errors.email && <p className="error">{errors.email}</p>}
+            {errors.email && touched.email && <p className="error">{errors.email}</p>}
+            
 
             <label>Password:</label>
             <input 
@@ -43,10 +53,12 @@ const Login = () => {
                 value={values.password}
                 id="password"
                 required
-                className={errors.name ? "input-error" : ""}
+                onBlur={handleBlur}
+                className={errors.name && touched.password  ? "input-error" : ""}
             />
-            {errors.name && <p className="error">{errors.name}</p>}
-            <button type="submit" disabled={isLoading}>{isLoading ? "Logging in..." : "Login"}</button>
+            {errors.name && touched.password && <p className="error">{errors.name}</p>}
+
+            <button type="submit" disabled={isSubmitting}> Login</button>
             <Link to="/signup">
                 <button type="button">Sign up</button>
             </Link> 
@@ -55,5 +67,5 @@ const Login = () => {
         </form>
     );
 };
-
+   
 export default Login;
