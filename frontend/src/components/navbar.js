@@ -13,7 +13,7 @@ const Navbar = () => {
             {user && (
                 <div className="container">
                     <Link to="/">
-                        <h1>Library</h1>
+                        <h1>Transaction</h1>
                     </Link>
                 </div>
             )}
