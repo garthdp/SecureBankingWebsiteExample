@@ -21,3 +21,8 @@ export const userSchema = yup.object().shape({
     idNumber: yup.string().required("ID number is required"),
     accountNumber: yup.string().required("Account number is required")
 });
+
+export const loginSchema = yup.object().shape({
+    email: yup.string().email("Please enter a valid email").required("Email is required"),
+    password: yup.string().required("Password is required")
+})

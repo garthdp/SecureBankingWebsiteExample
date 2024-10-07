@@ -1,29 +1,28 @@
-
 import { useLogin } from "../hooks/useLogin"
 import { Link } from "react-router-dom"
 import { useFormik } from 'formik'
-import { userSchema } from "../schemas/index"
+import { loginSchema, userSchema } from "../schemas/index"
 
   
 
 const Login = () => {
-    const { login, error, ok } = useLogin()
+    const { login, isLoading, error, ok } = useLogin()
 
     
-const onSubmit = async (values, actions) => {
-    console.log(values);
-    console.log(actions);
-    //await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    await login(values.email, values.password)
-};  
+    const onSubmit = async (values, actions) => {
+        console.log(values);
+        console.log(actions);
+        //await new Promise((resolve) => setTimeout(resolve, 1000));
+        
+        await login(values.email, values.password)
+    };  
 
-    const {values, errors,touched,isSubmitting,handleBlur, handleChange, handleSubmit} = useFormik({
+    const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
         initialValues: {
             email: '',
             password: '',
         },
-        validationSchema: userSchema,
+        validationSchema: loginSchema,
         onSubmit,
     });
 
@@ -54,11 +53,11 @@ const onSubmit = async (values, actions) => {
                 id="password"
                 required
                 onBlur={handleBlur}
-                className={errors.name && touched.password  ? "input-error" : ""}
+                className={errors.password && touched.password  ? "input-error" : ""}
             />
-            {errors.name && touched.password && <p className="error">{errors.name}</p>}
+            {errors.password && touched.password && <p className="error">{errors.password}</p>}
 
-            <button type="submit" disabled={isSubmitting}> Login</button>
+            <button type="submit" disabled={isLoading}> Login</button>
             <Link to="/signup">
                 <button type="button">Sign up</button>
             </Link> 
