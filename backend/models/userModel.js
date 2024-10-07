@@ -43,29 +43,21 @@ userSchema.statics.signup = async function (name, surname, idNumber, accountNumb
     if(!email || !password){
         throw Error('All fields must be filled')
     }
+    // validate email
     if(!validator.isEmail(email)){
         throw Error('Email invalid')
     }
+    // validate password
     if(!validator.isStrongPassword(password)){
         throw Error('Password invalid')
     }
-    // validate email
 
-    // validate password
-
-    // verify
+    // verifies user information
     const checkUserEmail = await this.findOne({email})
     if (checkUserEmail){
         throw Error('Email already taken.')
     }
-    const checkUserIdNumber = await this.findOne({idNumber})
-    if (checkUserIdNumber){
-        throw Error('ID Number already taken.')
-    }
-    const checkUserAccountNumber = await this.findOne({accountNumber})
-    if (checkUserAccountNumber){
-        throw Error('Account Number already taken.')
-    }
+
     // generates salt
     const salt = await bcrypt.genSalt(10)
     // generates hashed password

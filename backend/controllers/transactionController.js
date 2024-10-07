@@ -3,11 +3,13 @@ const mongoose = require('mongoose')
 const crypto = require('crypto-js')
 require('dotenv').config()
 
-//get books
+//get transactions
 const getTransactions = async(req, res) => {
     const {providerEmail} = req.query
     try{
+        // finds users transactions
         const transactions = await Transactions.find({providerEmail}).sort({createAt: -1})
+        // decrypts transaction information so that user can see it
         transactions.forEach(transaction => {
             const bytes = crypto.AES.decrypt(transaction.recipientAccountNumber, process.env.SECRET_KEY)
             transaction.recipientAccountNumber = bytes.toString(crypto.enc.Utf8)
@@ -23,11 +25,15 @@ const getTransactions = async(req, res) => {
     }
 }
 
-//create new book
+//create new transaction
 const createTransaction = async(req, res) => {
     const {amount, currency, providerEmail, swiftCode, recipientName, recipientAccountNumber} = req.body
     try{
+        // adds transaction to database
         const transaction = await Transactions.createTransaction(amount.toString(), currency, providerEmail, swiftCode, recipientName, recipientAccountNumber.toString())
+        // sends decrypted transaction in response back so that it can be added to transaction list
+        const bytes = crypto.AES.decrypt(transaction.recipientAccountNumber, process.env.SECRET_KEY)
+        transaction.recipientAccountNumber = bytes.toString(crypto.enc.Utf8)
         res.status(200).json(transaction)
     }
     catch(error){

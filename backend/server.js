@@ -1,7 +1,4 @@
-//calling express
-//define all constants
 require('dotenv').config()
-
 const express = require('express')
 const mongoose = require('mongoose')
 const https = require('https')

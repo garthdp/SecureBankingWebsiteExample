@@ -32,6 +32,7 @@ const loginUser = async(req, res) => {
 const signupUser = async(req, res) => {
     const {name, surname, idNumber, accountNumber, email, password} = req.body
     try{
+        // creates user
         const user = await User.signup(name, surname, idNumber, accountNumber, email, password)
 
         res.status(200).json({ok: "Account created."})
@@ -40,7 +41,9 @@ const signupUser = async(req, res) => {
     }
 }
 
+// logs out user
 const logoutUser = async(req, res) => {
+    // resets cookie
     res.cookie('token', '', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
