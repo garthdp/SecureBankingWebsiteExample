@@ -10,19 +10,19 @@ const Navbar = () => {
     }
     return (
         <header>
-            {user && (
+            {user && ( // if user is signed in itll show transaction
                 <div className="container">
                     <Link to="/">
                         <h1>Transactions</h1>
                     </Link>
                 </div>
             )}
-            {user && ( //if we have a user then it will show logout button
+            {user && ( //if user is signed in then it will show logout button
                 <div className="container">
                     <a><h1 onClick={handleClick}>Logout</h1></a>
                 </div>
             )}
-            {!user && (
+            {!user && ( // if user is not signed in then it will show login button
                 <div className="container">
                     <Link to="/login">
                         <h1>Login</h1>

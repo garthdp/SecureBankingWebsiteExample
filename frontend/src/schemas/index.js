@@ -1,14 +1,14 @@
 import * as yup from 'yup';
 
 // Currency regex example for common codes like USD, EUR, GBP
-//const currencyRegex = /^[A-Z]{3}$/; 
-const swiftValidationRegex = /^[A-Z]$/
+const currencyRegex = /^[A-Z]{3}$/; 
+const swiftValidationRegex = /^[A-Z]+$/
 const blacklist = /^[a-zA-Z0-9 ]*$/
 
 export const transactionSchema = yup.object().shape({
     amount: yup.number().positive().integer().required("Amount is required and must be a positive integer"),
-    currency: yup.string().matches(blacklist, {message: "No special characters are allowed"}).required("Currency is required"),
-    swiftCode: yup.string().matches(blacklist, {message: "No special characters are allowed"}).required("Please enter swift code").min(8).max(11),
+    currency: yup.string().matches(currencyRegex, {message: "Only currency codes are accepted, eg. ZAR, USD, EUR"}).required("Currency is required"),
+    swiftCode: yup.string().matches(swiftValidationRegex, {message: "Only capital letters are are accepted."}).required("Please enter swift code").min(8).max(11),
     recipientName: yup.string().matches(blacklist, {message: "No special characters are allowed"}).required("Please enter a valid name"),
     recipientAccountNumber: yup.number().positive().integer().required("Account number is required and must be a positive integer"),
 });

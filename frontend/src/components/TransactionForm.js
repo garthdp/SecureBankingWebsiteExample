@@ -17,6 +17,7 @@ const TransactionForm = () => {
 
     // Formik setup
     const formik = useFormik({
+        // setting up formik transaction values
         initialValues: {
             amount: "",
             currency: "",
@@ -24,7 +25,9 @@ const TransactionForm = () => {
             swiftCode:"",
             recipientAccountNumber: "",
         },
+        // gets yup validation schema
         validationSchema: transactionSchema,
+        // form on submit function
         onSubmit: async (values, actions) => {
             const transaction = {
                 ...values,

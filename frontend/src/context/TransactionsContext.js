@@ -8,9 +8,9 @@ export const transactionsReducer = (state, action) => {
             return{
                 transactions: action.payload
             }
-        case 'CREATE_TRANSACTIONS':
+        case 'CREATE_TRANSACTION':
             return{
-                transactions: [action.payload, ...state]
+                transactions: [action.payload, ...state.transactions]
             }
         default: 
             return state
