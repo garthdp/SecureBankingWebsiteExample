@@ -1,7 +1,7 @@
 import { useLogin } from "../hooks/useLogin"
 import { Link } from "react-router-dom"
 import { useFormik } from 'formik'
-import { loginSchema, userSchema } from "../schemas/index"
+import { loginSchema } from "../schemas/index"
 
   
 
