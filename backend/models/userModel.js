@@ -2,6 +2,8 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const validator = require('validator')
+const crypto = require('crypto-js')
+require('dotenv').config()
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
@@ -64,11 +66,15 @@ userSchema.statics.signup = async function (name, surname, idNumber, accountNumb
     if (checkUserAccountNumber){
         throw Error('Account Number already taken.')
     }
-
+    // generates salt
     const salt = await bcrypt.genSalt(10)
+    // generates hashed password
     const hashPassword = await bcrypt.hash(password, salt)
-    const hashAccountNumber = await bcrypt.hash(accountNumber, salt)
-    const hashIDNumber = await bcrypt.hash(idNumber, salt)
+    // encrypts account number
+    const hashAccountNumber = crypto.AES.encrypt(accountNumber, process.env.SECRET_KEY).toString()
+    // encrypts idnumber
+    const hashIDNumber = crypto.AES.encrypt(idNumber, process.env.SECRET_KEY).toString()
+    // creates user
     const user = await this.create({name, surname, idNumber: hashIDNumber, accountNumber: hashAccountNumber, email, password: hashPassword})
     return user
 
@@ -86,6 +92,7 @@ userSchema.statics.login = async function (email, password){
     if (!user) {
         throw Error('Incorrect email or password')
     }
+    // checks if inputted password matches saved password
     const match = await bcrypt.compare(password, user.password)
     if(!match){
         throw Error('Incorrect email or password')

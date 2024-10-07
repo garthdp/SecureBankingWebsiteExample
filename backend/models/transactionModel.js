@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
+const crypto = require('crypto-js')
+require('dotenv').config()
 
 const Schema = mongoose.Schema
 
@@ -32,9 +34,13 @@ const transactionSchema = new Schema({
 
 transactionSchema.statics.createTransaction = async function (amount, currency, providerEmail, swiftCode, recipientName, recipientAccountNumber){
     
-    console.log(amount)
-    const salt = await bcrypt.genSalt(10)
-    const hash = await bcrypt.hash(recipientAccountNumber, salt)
+    // code attribution
+    // link = https://www.youtube.com/watch?v=iH54fek9xc4
+    // title = NodeJS Data Encryption & Decryption using CryptoJS Module #nodejs #crypto
+    // author = Proto Coders Point
+    // usage = used to encrypt and decrypt things using cryptojs
+
+    const hash = crypto.AES.encrypt(recipientAccountNumber, process.env.SECRET_KEY).toString()
     const transaction = await this.create({amount, currency, providerEmail, swiftCode, recipientName, recipientAccountNumber: hash})
     return transaction 
 }

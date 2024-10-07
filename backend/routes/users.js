@@ -6,13 +6,14 @@ const {loginUser, signupUser, logoutUser} = require('../controllers/userControll
 const ExpressBrute = require('express-brute')
 
 const store = new ExpressBrute.MemoryStore()
+// use bruteforce to protect against brute force attacks
 const bruteforce = new ExpressBrute(store, {
-    freeRetries: 5,
+    freeRetries: 5, // user has 5 free tries before they are locked from making requests
     minWait: 1000 * 60, // 1 min wait after the login attemps
     maxWait: 1000 * 60 * 10,
     lifetime: 1000 * 60 * 10, // 10mins lifetime
 })
-// login
+
 const router = express.Router()
 
 router.post('/login', bruteforce.prevent, loginUser)
@@ -20,7 +21,7 @@ router.post('/login', bruteforce.prevent, loginUser)
  // signup
 router.post('/signup', bruteforce.prevent, signupUser)
 
- // signup
+ // Logout
  router.get('/logout', logoutUser)
 
 //export routes
