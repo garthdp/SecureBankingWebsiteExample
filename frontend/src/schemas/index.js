@@ -14,10 +14,10 @@ export const transactionSchema = yup.object().shape({
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/; // At least 1 digit, 1 lowercase, 1 uppercase, and minimum 5 characters
 
 export const userSchema = yup.object().shape({
-   // name: yup.string().required("Name is required"),
-    //surname: yup.string().required("Surname is required"),
+    name: yup.string().required("Name is required"),
+    surname: yup.string().required("Surname is required"),
     email: yup.string().email("Please enter a valid email").required("Email is required"),
     password: yup.string().min(6).matches(passwordRules, { message: "Please make a stronger password" }).required("Password is required"),
-    //idNumber: yup.string().required("ID number is required"),
-    //accountNumber: yup.string().required("Account number is required")
+    idNumber: yup.string().required("ID number is required"),
+    accountNumber: yup.string().required("Account number is required")
 });

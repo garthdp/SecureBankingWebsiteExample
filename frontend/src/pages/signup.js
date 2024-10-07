@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { useSignup } from "../hooks/useSignup"
 import { useFormik } from 'formik'
 import { userSchema } from "../schemas/index"
@@ -9,7 +8,6 @@ const Signup = () => {
     
     const onSubmit = async (values, actions) => {
         await signup(values.name, values.surname, values.idNumber, values.accountNumber, values.email, values.password)
-        console.log(values)
     };
 
     // formik and yup validation
@@ -17,7 +15,7 @@ const Signup = () => {
     // link = https://www.youtube.com/watch?v=7Ophfq0lEAY
     // author = nikita dev
     // used to do formik and yup
-    const {values, errors, touched, handleChange, handleSubmit} = useFormik({
+    const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
         initialValues: {
             name: '',
             surname: '',
@@ -39,6 +37,7 @@ const Signup = () => {
                 type="text"
                 onChange={handleChange}
                 value={values.name}
+                onBlur={handleBlur}
                 id="name"
                 required
                 className={errors.name && touched.name ? "input-error" : ""}
@@ -49,6 +48,7 @@ const Signup = () => {
                 type="text"
                 onChange={handleChange}
                 value={values.surname}
+                onBlur={handleBlur}
                 id="surname"
                 required
                 className={errors.surname && touched.surname ? "input-error" : ""}
@@ -60,6 +60,7 @@ const Signup = () => {
                 type="number"
                 onChange={handleChange}
                 value={values.idNumber}
+                onBlur={handleBlur}
                 id="idNumber"
                 required
                 className={errors.idNumber && touched.idNumber ? "input-error" : ""}
@@ -71,6 +72,7 @@ const Signup = () => {
                 type="number"
                 onChange={handleChange}
                 value={values.accountNumber}
+                onBlur={handleBlur}
                 id="accountNumber"
                 required
                 className={errors.accountNumber && touched.accountNumber ? "input-error" : ""}
@@ -82,6 +84,7 @@ const Signup = () => {
                 type="email"
                 onChange={handleChange}
                 value={values.email}
+                onBlur={handleBlur}
                 id="email"
                 required
                 className={errors.email && touched.email ? "input-error" : ""}
@@ -93,6 +96,7 @@ const Signup = () => {
                 type="password"
                 onChange={handleChange}
                 value={values.password}
+                onBlur={handleBlur}
                 id="password"
                 required
                 className={errors.password && touched.password ? "input-error" : ""}
