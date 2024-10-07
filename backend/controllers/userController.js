@@ -20,7 +20,7 @@ const loginUser = async(req, res) => {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             maxAge: 3 * 24 * 60 * 60 * 60 * 1000, //days, hours, minutes, seconds, milliseconds
-            sameSite: 'Lax'//strict and none
+            sameSite: 'Strict'//strict and none
         })
         res.status(200).json({email})
     }catch (error){
@@ -34,16 +34,6 @@ const signupUser = async(req, res) => {
     try{
         const user = await User.signup(name, surname, idNumber, accountNumber, email, password)
 
-        // after sign up, but just before reponse form server
-        const token = createToken(user._id)
-
-        //store token in cookie
-        res.cookie('token', token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            maxAge: 3 * 24 * 60 * 60 * 60 * 1000, //days, hours, minutes, seconds, milliseconds
-            sameSite: 'Strict'
-        })
         res.status(200).json({ok: "Account created."})
     }catch (error){
         res.status(400).json({error: error.message})

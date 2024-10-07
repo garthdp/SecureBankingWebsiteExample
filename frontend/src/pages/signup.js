@@ -7,7 +7,7 @@ const Signup = () => {
     const { signup, isLoading, error, ok } = useSignup()
     
     const onSubmit = async (values, actions) => {
-        await signup(values.name, values.surname, values.idNumber, values.accountNumber, values.email, values.password)
+        await signup(values.name, values.surname, values.idNumber.toString(), values.accountNumber.toString(), values.email, values.password)
     };
 
     // formik and yup validation
@@ -83,8 +83,8 @@ const Signup = () => {
             <input 
                 type="email"
                 onChange={handleChange}
-                value={values.email}
                 onBlur={handleBlur}
+                value={values.email}
                 id="email"
                 required
                 className={errors.email && touched.email ? "input-error" : ""}
@@ -95,8 +95,8 @@ const Signup = () => {
             <input 
                 type="password"
                 onChange={handleChange}
-                value={values.password}
                 onBlur={handleBlur}
+                value={values.password}
                 id="password"
                 required
                 className={errors.password && touched.password ? "input-error" : ""}

@@ -21,6 +21,7 @@ const TransactionForm = () => {
             amount: "",
             currency: "",
             recipientName: "",
+            swiftCode:"",
             recipientAccountNumber: "",
         },
         validationSchema: transactionSchema,
@@ -31,6 +32,7 @@ const TransactionForm = () => {
             };
 
             try {
+                console.log(transaction)
                 const response = await fetch('api/transaction/', {
                     method: 'POST',
                     body: JSON.stringify(transaction),
@@ -80,6 +82,17 @@ const TransactionForm = () => {
                 className={formik.errors.currency && formik.touched.currency ? "input-error" : ""}
             />
             {formik.errors.currency && formik.touched.currency && <p className="error">{formik.errors.currency}</p>}
+
+            <label>Swift Code:</label>
+            <input
+                type="text"
+                value={formik.values.swiftCode}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                id="swiftCode"
+                className={formik.errors.swiftCode && formik.touched.swiftCode ? "input-error" : ""}
+            />
+            {formik.errors.swiftCode && formik.touched.swiftCode && <p className="error">{formik.errors.swiftCode}</p>}
 
             <label>Recipient Name:</label>
             <input

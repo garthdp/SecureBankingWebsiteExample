@@ -8,6 +8,7 @@ const TransactionDetails = ({transaction}) => {
             <p><strong>Amount: </strong>{transaction.amount}</p><br></br>
             <p><strong>Currency: </strong>{transaction.currency}</p><br></br>
             <p><strong>Recipient Name: </strong>{transaction.recipientName}</p><br></br>
+            <p><strong>Swift Code: </strong>{transaction.swiftCode}</p><br></br>
             <p><strong>Recipient Account Number: </strong>{transaction.recipientAccountNumber}</p><br></br>
             <p>{formatDistanceToNow(new Date(transaction.createdAt), {addSuffix: true})}</p><br></br>
         </div>

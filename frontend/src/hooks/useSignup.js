@@ -29,7 +29,7 @@ export const useSignup = () => {
             } else {
                 // Handle success response
                 setOk(json.ok); // Assuming your API sends back an `ok` field on success
-                dispatch({ type: 'LOGIN', payload: json }); // Dispatch user data if needed
+                dispatch({ type: 'SIGNUP', payload: json }); // Dispatch user data if needed
                 setIsLoading(false);
             }
         } catch (err) {

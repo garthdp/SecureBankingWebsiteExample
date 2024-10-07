@@ -19,9 +19,9 @@ const getTransactions = async(req, res) => {
 
 //create new book
 const createTransaction = async(req, res) => {
-    const {amount, currency, providerEmail, recipientName, recipientAccountNumber} = req.body
+    const {amount, currency, providerEmail, swiftCode, recipientName, recipientAccountNumber} = req.body
     try{
-        const transaction = await Transactions.create({amount, currency, providerEmail, recipientName, recipientAccountNumber})
+        const transaction = await Transactions.createTransaction(amount.toString(), currency, providerEmail, swiftCode, recipientName, recipientAccountNumber.toString())
         res.status(200).json(transaction)
     }
     catch(error){
