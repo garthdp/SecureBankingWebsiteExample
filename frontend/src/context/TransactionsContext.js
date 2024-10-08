@@ -12,6 +12,10 @@ export const transactionsReducer = (state, action) => {
             return{
                 transactions: [action.payload, ...state.transactions]
             }
+        case 'RESET_TRANSACTIONS':
+            return {
+                transactions: null
+            }
         default: 
             return state
     }

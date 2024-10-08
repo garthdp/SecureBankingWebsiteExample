@@ -1,8 +1,10 @@
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useTransactionsContext } from './useTransactionsContext';
 import { useNavigate } from 'react-router-dom';
 
 export const useLogout = () => {
-    const { dispatch } = useAuthContext();
+    const { dispatch: authDispatch } = useAuthContext();
+    const { dispatch: transactionsDispatch } = useTransactionsContext();
     const navigate = useNavigate();
 
     const logout = async () => {
@@ -17,7 +19,8 @@ export const useLogout = () => {
             localStorage.removeItem('user');
 
             // Dispatch the logout action to update the context
-            dispatch({ type: 'LOGOUT' });
+            authDispatch({ type: 'LOGOUT' });
+            transactionsDispatch({type: 'RESET_TRANSACTIONS'})
 
             // Redirect to the login page after logging out
             navigate('/login');
