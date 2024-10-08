@@ -14,7 +14,7 @@ export const transactionsReducer = (state, action) => {
             }
         case 'RESET_TRANSACTIONS':
             return {
-                transactions: null
+                transactions: []
             }
         default: 
             return state

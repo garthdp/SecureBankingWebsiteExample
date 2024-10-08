@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      {window.location.pathname !== '/' && window.location.pathname !== '/signup' && (
+      {window.location.pathname !== '/' && (
           <Navbar />
         )}
         <div className='pages'>
