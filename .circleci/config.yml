@@ -20,10 +20,7 @@ jobs:
       - run:
           name: "List files in the working directory"
           command: "ls -la"
-      - run:
-          name: "Pause before find"
-          command: "sleep 10"  # Brief pause
-      - run: find .  # This should now work
+      - run: FIND .  # This should now work
       - run: |
           SONAR_BRANCH="${CIRCLE_BRANCH:-master}"
           echo "Sonar branch value is: " $SONAR_BRANCH
