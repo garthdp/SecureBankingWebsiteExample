@@ -20,10 +20,7 @@ jobs:
       - run:
           name: "List files in the working directory"
           command: "ls -la"
-      - run:
-          name: "Pause before find"
-          command: "sleep 1"  # Brief pause
-      - run: find .
+      - run: find *
       - attach_workspace:
           at: ~/workspace
       - run: |
