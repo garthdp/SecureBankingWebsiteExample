@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 
 const createToken = (_id) => {
-    jwt.sign({_id}, process.env.SECRET_KEY, {expiresIn: '3d'})
+    return jwt.sign({_id}, process.env.SECRET_KEY, {expiresIn: '3d'})
 }
 
 //login user
@@ -43,6 +43,7 @@ const signupUser = async(req, res) => {
 
 // logs out user
 const logoutUser = async(req, res) => {
+    res.clearCookie('csrfToken');
     // resets cookie
     res.cookie('token', '', {
         httpOnly: true,

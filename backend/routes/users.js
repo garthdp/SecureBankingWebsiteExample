@@ -16,10 +16,10 @@ const bruteforce = new ExpressBrute(store, {
 
 const router = express.Router()
 
-router.post('/login', bruteforce.prevent, loginUser)
+router.post('/login', loginUser)
 
  // signup
-router.post('/signup', bruteforce.prevent, signupUser)
+router.post('/signup', bruteforce.prevent,  signupUser)
 
  // Logout
  router.get('/logout', logoutUser)
