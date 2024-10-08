@@ -3,13 +3,13 @@
 
 /* Layout */
 :root {
-  --primary: #30D5C8; /* Primary color */
-  --secondary: #00000085; /* For hover effects */
-  --error: #d9301d; /* Red for errors */
-  --background: #000000; /* Background color */
-  --header-bg: #1a1a1a; /* Darker header background */
-  --text-color: #30D5C8; /* Text color */
-  --ok: #26F801; /* Green for success messages */
+  --primary: #30D5C8; 
+  --secondary: #00000085; 
+  --error: #d9301d; 
+  --background: #000000; 
+  --header-bg: #1a1a1a; 
+  --text-color: #30D5C8; 
+  --ok: #26F801; 
 }
 
 body {
@@ -23,7 +23,7 @@ body {
 .pages {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center content */
+  align-items: center; 
 }
 
 .home {
@@ -127,21 +127,21 @@ input {
   padding: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 100%; /* Full width for inputs */
-  max-width: none; /* Remove max width restriction */
-  border: 1px solid #555; /* Darker border for inputs */
+  width: 100%; 
+  max-width: none; 
+  border: 1px solid #555; 
   border-radius: 4px;
   box-sizing: border-box;
-  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
-  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.2); 
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; 
 }
 
 
 /* Glowing border on focus */
 input:focus {
-  outline: none; /* Remove default outline */
-  border-color: var(--primary); /* Primary color border */
-  box-shadow: 0 0 8px var(--primary), 0 0 16px var(--primary); /* Glow effect */
+  outline: none; 
+  border-color: var(--primary); 
+  box-shadow: 0 0 8px var(--primary), 0 0 16px var(--primary); 
 }
 
 /* Button styles */
@@ -154,18 +154,18 @@ form button,
   font-family: 'Lora', serif;
   border-radius: 4px;
   cursor: pointer;
-  margin: 10px 0; /* Space buttons vertically */
+  margin: 10px 0; 
 }
 
 form button:hover,
 .transaction-details button:hover {
-  background: #1a8b8c; /* Darker shade on hover */
+  background: #1a8b8c; 
 }
 
 form button:active,
 .transaction-details button:active {
-  background: #1a5b5c; /* Darker shade when button is pressed */
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4); /* Inset shadow for active state */
+  background: #1a5b5c; 
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4); 
 }
 
 /* Error message color */
@@ -218,15 +218,15 @@ p.error {
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .home {
-    grid-template-columns: 1fr; /* Stack columns on smaller screens */
+    grid-template-columns: 1fr;
   }
   .transaction-details {
-    margin: 10px; /* Reduce margin on smaller screens */
+    margin: 10px; 
   }
 
   header .container {
-    flex-direction: column; /* Stack items vertically on small screens */
-    align-items: flex-start; /* Align items to the start */
+    flex-direction: column; 
+    align-items: flex-start; 
   }
 
   header a {

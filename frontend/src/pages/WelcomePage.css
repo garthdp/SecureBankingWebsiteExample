@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: cyan; 
+}
+
+.welcome-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.title {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.button-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.glow-button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    color: black; 
+    background-color: white; 
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.glow-button:hover {
+    background-color: cyan; 
+    color: black; 
+    box-shadow: 0 0 10px cyan, 0 0 20px cyan;
+    transform: scale(1.05);
+}
+

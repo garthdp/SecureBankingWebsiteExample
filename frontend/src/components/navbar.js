@@ -1,28 +1,32 @@
-import { Link  } from "react-router-dom"
-import { useLogout } from "../hooks/useLogout"
-import { useAuthContext } from "../hooks/useAuthContext"
+import { Link, useLocation, useNavigate } from "react-router-dom"; 
+import { useLogout } from "../hooks/useLogout";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Navbar = () => {
-    const {logout} = useLogout()
-    const {user} = useAuthContext()
-    const handleClick = () => {
-        logout()
-    }
+    const { logout } = useLogout();
+    const { user } = useAuthContext();
+    const location = useLocation(); 
+    const navigate = useNavigate(); 
+
+    const handleLogout = () => {
+        logout();
+        navigate("/"); 
+    };
+
     return (
         <header>
-            {user && ( // if user is signed in itll show transaction
+            {user && ( 
                 <div className="container">
-                    <Link to="/">
+                    <Link to="/home"> 
                         <h1>Transactions</h1>
                     </Link>
+                    <a onClick={handleLogout}>
+                        <h1>Logout</h1>
+                    </a>
                 </div>
             )}
-            {user && ( //if user is signed in then it will show logout button
-                <div className="container">
-                    <a><h1 onClick={handleClick}>Logout</h1></a>
-                </div>
-            )}
-            {!user && ( // if user is not signed in then it will show login button
+
+            {!user && location.pathname === '/signup' && (
                 <div className="container">
                     <Link to="/login">
                         <h1>Login</h1>
@@ -30,7 +34,7 @@ const Navbar = () => {
                 </div>
             )}
         </header>
-    )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;
