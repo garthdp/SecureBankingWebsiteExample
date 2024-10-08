@@ -17,10 +17,7 @@ jobs:
     resource_class: small
     steps:
       - checkout
-      - run:
-          name: "List files in the working directory"
-          command: "ls -la"
-      - run: find *
+      - run: find .
       - attach_workspace:
           at: ~/workspace
       - run: |
