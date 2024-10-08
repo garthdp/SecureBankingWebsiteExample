@@ -21,14 +21,14 @@ jobs:
   sonarqube:
     working_directory: ~/build
     docker:
-      - image: circleci/node:20
+      - image: sonarsource/sonar-scanner-cli
     resource_class: small
     steps:
       #- run: apk update
       #- run:  apk upgrade
       #- run:  apk --no-cache add --update openssh git curl
       - checkout
-      - run: find .
+      - run: cd .
       - attach_workspace:
           at: ~/workspace
       - run: |
