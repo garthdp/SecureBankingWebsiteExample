@@ -119,7 +119,7 @@ const TransactionForm = () => {
             />
             {formik.errors.recipientAccountNumber && formik.touched.recipientAccountNumber && <p className="error">{formik.errors.recipientAccountNumber}</p>}
 
-            <button type="submit" disabled={formik.isSubmitting}>Add transaction</button>
+            <button type="submit" disabled={formik.isSubmitting}>Pay Now</button>
             {error && <div className="error">{error}</div>}
         </form>
     );
