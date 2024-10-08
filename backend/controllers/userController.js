@@ -43,7 +43,6 @@ const signupUser = async(req, res) => {
 
 // logs out user
 const logoutUser = async(req, res) => {
-    res.clearCookie('csrfToken');
     // resets cookie
     res.cookie('token', '', {
         httpOnly: true,
