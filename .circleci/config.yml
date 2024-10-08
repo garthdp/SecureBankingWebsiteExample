@@ -9,7 +9,7 @@ jobs:
   sonarqube:
     working_directory: ~/build
     docker:
-      - image: sonarsource/sonar-scanner-cli
+      - image: sonarsource/sonar-scanner-cli:latest
     resource_class: small
     steps:
       #- run: apk update
