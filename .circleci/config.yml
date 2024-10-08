@@ -21,7 +21,7 @@ jobs:
   sonarqube:
     working_directory: ~/build
     docker:
-      - image: circleci/node:20
+      - image: sonarsource/sonar-scanner-cli
     resource_class: small
     steps:
       #- run: apk update
