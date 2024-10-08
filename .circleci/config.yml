@@ -27,10 +27,7 @@ jobs:
       #- run: apk update
       #- run:  apk upgrade
       #- run:  apk --no-cache add --update openssh git curl
-      - checkout      
-      - run:
-          name: Install required packages
-          command: sudo apt-get update && sudo apt-get install findutils
+      - checkout
       - run: find .
       - attach_workspace:
           at: ~/workspace
