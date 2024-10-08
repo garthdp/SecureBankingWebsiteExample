@@ -2,7 +2,7 @@ import * as yup from 'yup';
 
 // Currency regex example for common codes like USD, EUR, GBP
 const currencyRegex = /^[A-Z]{3}$/; 
-const swiftValidationRegex = /^[A-Z]+$/
+const swiftValidationRegex = /^[A-Z0-9]+$/
 const blacklist = /^[a-zA-Z0-9 ]*$/
 
 export const transactionSchema = yup.object().shape({
@@ -22,7 +22,7 @@ export const userSchema = yup.object().shape({
     email: yup.string().email("Please enter a valid email").required("Email is required"),
     password: yup.string().min(6).matches(passwordRules, { message: "Please make a stronger password" }).required("Password is required"),
     idNumber: yup.string().matches(blacklist, {message: "No special characters are allowed"}).required("ID number is required"),
-    accountNumber: yup.string().matches(blacklist, {message: "No special characters are allowed"}).required("Account number is required")
+    accountNumber: yup.string().matches(blacklist, {message: "No special characters are allowed"}).required("Account number is required"),
 });
 
 export const loginSchema = yup.object().shape({
