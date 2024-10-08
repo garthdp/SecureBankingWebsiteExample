@@ -46,6 +46,8 @@ workflows:
   build-and-test:
     jobs:
       - test-node
+      - sonarqube:
+         context: SonarCloud
     # - deploy:
     #     requires:
     #       - test-node
