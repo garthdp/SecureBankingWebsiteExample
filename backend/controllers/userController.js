@@ -12,6 +12,10 @@ const loginUser = async(req, res) => {
     try{
         const user = await User.login(email, password)
 
+        // get user types
+        const type = user.userType
+        const userEmail  = user.email
+
         // after sign up, but just before reponse form server
         const token = createToken(user._id)
 
@@ -22,7 +26,9 @@ const loginUser = async(req, res) => {
             maxAge: 3 * 24 * 60 * 60 * 60 * 1000, //days, hours, minutes, seconds, milliseconds
             sameSite: 'Strict'//strict and none
         })
-        res.status(200).json({email})
+        
+        // returns email and usertype
+        res.status(200).json({email: userEmail, userType: type})
     }catch (error){
         res.status(400).json({error: error.message})
     }
@@ -32,8 +38,9 @@ const loginUser = async(req, res) => {
 const signupUser = async(req, res) => {
     const {name, surname, idNumber, accountNumber, email, password} = req.body
     try{
+        const userType = "User"
         // creates user
-        const user = await User.signup(name, surname, idNumber, accountNumber, email, password)
+        const user = await User.signup(name, surname, userType, idNumber, accountNumber, email, password)
 
         res.status(200).json({ok: "Account created."})
     }catch (error){

@@ -4,6 +4,9 @@ import Home from './pages/home'
 import Login from './pages/login'
 import Signup from './pages/signup'
 import Navbar from './components/navbar'
+import Employee from './pages/employee'
+import Unauthorized from './pages/Unauthorized'
+import ProtectedPages from './context/ProtectedPages'
 
 function App() {
   return (
@@ -14,10 +17,24 @@ function App() {
         )}
         <div className='pages'>
           <Routes>
-            <Route path='/home' element={<Home/>}/>
+            <Route path='/home' element={
+              <ProtectedPages allowedRoles={['User']}>
+                <Home/>
+              </ProtectedPages>
+            }/>
+          </Routes>
+          <Routes>
+            <Route path='/employee' element={
+              <ProtectedPages allowedRoles={['Employee']}>
+                <Employee/>
+              </ProtectedPages>
+            }/>
           </Routes>
           <Routes>
             <Route path='/login' element={<Login/>}/>
+          </Routes>
+          <Routes>
+            <Route path='/unauthorized' element={<Unauthorized/>}/>
           </Routes>
           <Routes>
             <Route path='/signup' element={<Signup/>}/>

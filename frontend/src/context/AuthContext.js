@@ -6,14 +6,16 @@ export const authReducer = (state, action) => {
     switch (action.type){
         case 'LOGIN':
             return{
-                user: action.payload
+                user: action.payload,
+                roll: action.payload.userType,
             }
         case 'SIGNUP':
             return{
             }
         case 'LOGOUT':
             return{
-                user: null
+                user: null,
+                roll: null,
             }
         default: 
             return state
@@ -21,8 +23,10 @@ export const authReducer = (state, action) => {
 }
 
 export const AuthContextProvider = ({ children }) => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
     const [state, dispatch] = useReducer(authReducer, {
-        user: JSON.parse(localStorage.getItem("user")) || null
+        user: storedUser || null,
+        role: storedUser?.userType || null,
     })
     console.log('AuthContext state:', state)
     return (

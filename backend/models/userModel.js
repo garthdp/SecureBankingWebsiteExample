@@ -15,6 +15,10 @@ const userSchema = new Schema({
         type:String,
         required:true
     },
+    userType:{
+        type:String,
+        required:true
+    },
     idNumber:{
         type:String,
         required:true,
@@ -37,7 +41,7 @@ const userSchema = new Schema({
 }, {timestamps: true})
 
 // adding our own signup function
-userSchema.statics.signup = async function (name, surname, idNumber, accountNumber, email, password) {
+userSchema.statics.signup = async function (name, surname, userType, idNumber, accountNumber, email, password) {
 
     // validate if fields are filled
     if(!email || !password){
@@ -67,7 +71,7 @@ userSchema.statics.signup = async function (name, surname, idNumber, accountNumb
     // encrypts idnumber
     const hashIDNumber = crypto.AES.encrypt(idNumber, process.env.SECRET_KEY).toString()
     // creates user
-    const user = await this.create({name, surname, idNumber: hashIDNumber, accountNumber: hashAccountNumber, email, password: hashPassword})
+    const user = await this.create({name, surname, userType, idNumber: hashIDNumber, accountNumber: hashAccountNumber, email, password: hashPassword})
     return user
 
 }
