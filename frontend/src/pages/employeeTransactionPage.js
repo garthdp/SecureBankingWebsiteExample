@@ -9,7 +9,7 @@ const EmployeeTransactionPage = () => {
     useEffect(() => {
         const fetchTransactions = async () => {
             try {
-                const response = await fetch(`/api/transaction`); // Fetch all transactions for the employee
+                const response = await fetch(`/api/transaction/all`); // Fetch all transactions for the employee
                 const data = await response.json();
 
                 if (!response.ok) {
