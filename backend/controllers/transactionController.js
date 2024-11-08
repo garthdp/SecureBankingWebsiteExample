@@ -3,6 +3,27 @@ const mongoose = require('mongoose')
 const crypto = require('crypto-js')
 require('dotenv').config()
 
+const getAllTransactions = async (req, res) => {
+    try {
+       
+        const transactions = await Transactions.find().sort({ createAt: -1 });
+
+        // Decrypt each transaction's recipient account number
+        transactions.forEach(transaction => {
+            const bytes = crypto.AES.decrypt(transaction.recipientAccountNumber, process.env.SECRET_KEY);
+            transaction.recipientAccountNumber = bytes.toString(crypto.enc.Utf8);
+        });
+
+        if (!transactions.length) {
+            return res.status(400).json({ error: "No transactions found." });
+        }
+        res.status(200).json(transactions);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
+
+
 //get transactions
 const getTransactions = async(req, res) => {
     const {providerEmail} = req.query
@@ -43,5 +64,6 @@ const createTransaction = async(req, res) => {
 
 module.exports = {
     getTransactions, 
-    createTransaction
+    createTransaction,
+    getAllTransactions
 }

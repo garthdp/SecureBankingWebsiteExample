@@ -1,6 +1,6 @@
 //calling express
 const express = require('express')
-const {createTransaction, getTransactions} = require('../controllers/transactionController')
+const {createTransaction, getTransactions,getAllTransactions} = require('../controllers/transactionController')
 
 //brute force prevents attacks
 const ExpressBrute = require('express-brute')
@@ -23,5 +23,7 @@ router.post('/', bruteforce.prevent, createTransaction)
 
  // Fetch all transactions from the database
 router.get('/', getTransactions)
+
+router.get('/all',getAllTransactions )
 
 module.exports = router

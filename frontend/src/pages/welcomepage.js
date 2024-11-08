@@ -14,6 +14,9 @@ const WelcomePage = () => {
                 <Link to="/signup">
                     <button className="glow-button">Sign Up</button>
                 </Link>
+                <Link to="/employeeTransactionPage">
+                    <button className="glow-button">View Transactions</button>
+                </Link>
             </div>
         </div>
     );

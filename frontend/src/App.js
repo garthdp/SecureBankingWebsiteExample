@@ -7,6 +7,7 @@ import Navbar from './components/navbar'
 import Employee from './pages/employee'
 import Unauthorized from './pages/Unauthorized'
 import ProtectedPages from './context/ProtectedPages'
+import EmployeeTransactionPage from './pages/employeeTransactionPage'
 
 function App() {
   return (
@@ -41,6 +42,9 @@ function App() {
           </Routes>
           <Routes>
             <Route path='/' element={<WelcomePage/>}/>
+          </Routes>
+          <Routes>
+            <Route path='/employeeTransactionPage' element={<EmployeeTransactionPage/>}/>
           </Routes>
         </div>
       </BrowserRouter>
