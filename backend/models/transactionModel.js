@@ -30,6 +30,7 @@ const transactionSchema = new Schema({
         type:String,
         required:true
     },
+    status: { type: String, default: "Pending" },
 }, {timestamps: true})
 
 transactionSchema.statics.createTransaction = async function (amount, currency, providerEmail, swiftCode, recipientName, recipientAccountNumber){

@@ -1,6 +1,6 @@
 //calling express
 const express = require('express')
-const {createTransaction, getTransactions,getAllTransactions} = require('../controllers/transactionController')
+const {createTransaction, getTransactions,getAllTransactions,verifyTransaction} = require('../controllers/transactionController')
 
 //brute force prevents attacks
 const ExpressBrute = require('express-brute')
@@ -25,5 +25,6 @@ router.post('/', bruteforce.prevent, createTransaction)
 router.get('/', getTransactions)
 
 router.get('/all',getAllTransactions )
+router.put("/verify/:id", verifyTransaction);
 
 module.exports = router
