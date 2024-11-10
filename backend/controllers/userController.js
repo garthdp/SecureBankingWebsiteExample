@@ -40,7 +40,7 @@ const signupUser = async(req, res) => {
     try{
         const userType = "User"
         // creates user
-        const user = await User.signup(name, surname, userType, idNumber, accountNumber, email, password)
+        await User.signup(name, surname, userType, idNumber, accountNumber, email, password)
 
         res.status(200).json({ok: "Account created."})
     }catch (error){
