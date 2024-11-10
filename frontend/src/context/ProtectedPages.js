@@ -9,13 +9,13 @@ import { useAuthContext } from '../hooks/useAuthContext';
 // used for user rolls sign in
 
 const ProtectedPages = ({ children, allowedRoles }) => {
-    const { user, role } = useAuthContext();
+    const { user } = useAuthContext();
 
     if (!user) {
         return <Navigate to="/login" />;
     }
 
-    if (allowedRoles && !allowedRoles.includes(role)) {
+    if (allowedRoles && !allowedRoles.includes(user.userType)) {
         return <Navigate to="/unauthorized" />;
     }
 

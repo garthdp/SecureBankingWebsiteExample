@@ -17,9 +17,16 @@ const Navbar = () => {
         <header>
             {user && ( 
                 <div className="container">
-                    <Link to="/home"> 
-                        <h1>Transactions</h1>
-                    </Link>
+                    {user.userType == "User" && (
+                        <Link to="/home"> 
+                            <h1>Transactions</h1>
+                        </Link>
+                    )}
+                    {user.userType == "Employee" && (
+                        <Link to="/employeeTransactionPage"> 
+                            <h1>Transactions</h1>
+                        </Link>
+                    )}
                     <a onClick={handleLogout}>
                         <h1>Logout</h1>
                     </a>
