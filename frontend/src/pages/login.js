@@ -3,11 +3,8 @@ import { Link } from "react-router-dom"
 import { useFormik } from 'formik'
 import { loginSchema } from "../schemas/index"
 
-  
-
 const Login = () => {
     const { login, isLoading, error, ok } = useLogin()
-
     
     const onSubmit = async (values, actions) => {
         console.log(values);
