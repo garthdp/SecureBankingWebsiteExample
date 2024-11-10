@@ -44,7 +44,8 @@ app.use(
       directives: {
         defaultSrc: ["'self'"],  // default value for all directives that are absent
         scriptSrc: ["'self'"],   // helps prevent XSS attacks
-        frameAncestors: ["'none'"]  // helps prevent Clickjacking attacks
+        frameAncestors: ["'none'"],  // helps prevent Clickjacking attacks
+        blockAllMixedContent: []
       }
     })
   )
