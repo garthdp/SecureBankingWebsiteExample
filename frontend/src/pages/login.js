@@ -1,22 +1,28 @@
 import { useLogin } from "../hooks/useLogin"
-import { Link } from "react-router-dom"
 import { useFormik } from 'formik'
 import { loginSchema } from "../schemas/index"
 import ReCAPTCHA from 'react-google-recaptcha';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const Login = () => {
     const { login, isLoading, error, ok } = useLogin()
-    const [captchaToken, setCaptchaToken] = useState(null);
+    var [captchaToken, setCaptchaToken] = useState(null)
+    const recaptchaRef = useRef(null)
 
     const handleCaptchaChange = (token) => {
         setCaptchaToken(token);
     };
     
     const onSubmit = async (values, actions) => {
-        console.log(values);
-        console.log(actions);
+        console.log(values)
+        console.log(actions)
+        
         await login(values.email, values.password,captchaToken)
+
+        if (error) {
+            setCaptchaToken(null)
+            recaptchaRef.current.reset()
+        }
     };  
 
     const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
@@ -62,6 +68,7 @@ const Login = () => {
             <ReCAPTCHA
                 sitekey="6LdPjHoqAAAAABfnhV_t1d0sGJZ2Rf7l4cPYM1Mt"  
                 onChange={handleCaptchaChange}
+                ref={recaptchaRef}
             />
 
             <button type="submit" disabled={isLoading}> Login</button>

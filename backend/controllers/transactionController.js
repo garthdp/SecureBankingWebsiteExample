@@ -47,7 +47,7 @@ const getTransactions = async(req, res) => {
     const {providerEmail} = req.query
     try{
         // finds users transactions
-        const transactions = await Transactions.find(providerEmail).sort({createAt: -1})
+        const transactions = await Transactions.find({providerEmail}).sort({createAt: -1})
         // decrypts transaction information so that user can see it
         transactions.forEach(transaction => {
             const bytes = crypto.AES.decrypt(transaction.recipientAccountNumber, process.env.SECRET_KEY)
