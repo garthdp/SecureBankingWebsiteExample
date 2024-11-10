@@ -16,9 +16,6 @@ const Login = () => {
     const onSubmit = async (values, actions) => {
         console.log(values);
         console.log(actions);
-        //await new Promise((resolve) => setTimeout(resolve, 1000));
-        
-        console.log(captchaToken)
         await login(values.email, values.password,captchaToken)
     };  
 
@@ -68,9 +65,6 @@ const Login = () => {
             />
 
             <button type="submit" disabled={isLoading}> Login</button>
-            <Link to="/signup">
-                <button type="button">Sign up</button>
-            </Link> 
             {error && <div className="error">{error}</div>}
             {ok && <div className="ok">{ok}</div>}
         </form>

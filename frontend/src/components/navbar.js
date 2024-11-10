@@ -40,6 +40,13 @@ const Navbar = () => {
                     </Link>
                 </div>
             )}
+            {!user && location.pathname === '/login' && (
+                <div className="container">
+                    <Link to="/signup">
+                        <h1>Sign Up</h1>
+                    </Link>
+                </div>
+            )}
         </header>
     );
 };

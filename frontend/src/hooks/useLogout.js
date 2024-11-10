@@ -16,6 +16,7 @@ export const useLogout = () => {
 
         if (response.ok) {
             // Remove user from localStorage if logout was successful
+            localStorage.removeItem('_grecaptcha');
             localStorage.removeItem('user');
 
             // Dispatch the logout action to update the context
