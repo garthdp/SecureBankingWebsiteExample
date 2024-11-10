@@ -1,14 +1,33 @@
+const axios = require('axios');
 const User = require('../models/userModel')
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 
 const createToken = (_id) => {
-    return jwt.sign({_id}, process.env.SECRET_KEY, {expiresIn: '3d'})
+    return jwt.sign({_id}, process.env.reCAPTCHA, {expiresIn: '3d'})
 }
+
+const verifyCaptcha = async (captchaToken) => {
+    try {
+        const response = await axios.post(
+            `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.reCAPTCHA}&response=${captchaToken}`
+        );
+        return response.data.success;
+    } catch (error) {
+        console.error('reCAPTCHA verification failed:', error);
+        return false;
+    }
+};
 
 //login user
 const loginUser = async(req, res) => {
-    const {email, password} = req.body
+    const {email, password,captchaToken} = req.body;
+
+ const isCaptchaValid = await verifyCaptcha(captchaToken);
+    if (!isCaptchaValid) {
+        return res.status(400).json({ error: 'reCAPTCHA verification failed. Please try again.' });
+    }
+
     try{
         const user = await User.login(email, password)
 
