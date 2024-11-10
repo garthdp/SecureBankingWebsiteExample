@@ -21,9 +21,10 @@ const verifyCaptcha = async (captchaToken) => {
 
 //login user
 const loginUser = async(req, res) => {
-    const {email, password,captchaToken} = req.body;
+    const {email, password, captchaToken} = req.body;
 
- const isCaptchaValid = await verifyCaptcha(captchaToken);
+    const isCaptchaValid = await verifyCaptcha(captchaToken);
+    console.log(captchaToken)
     if (!isCaptchaValid) {
         return res.status(400).json({ error: 'reCAPTCHA verification failed. Please try again.' });
     }
