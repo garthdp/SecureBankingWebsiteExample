@@ -11,15 +11,7 @@
   --text-color: #30D5C8; 
   --ok: #26F801; 
 }
-.darkmode{
-  --primary: #30D5C8; 
-  --secondary: #00000085; 
-  --error: #d9301d; 
-  --background: #000000; 
-  --header-bg: #1a1a1a; 
-  --text-color: #30D5C8; 
-  --ok: #26F801; 
-}
+
 
 #theme-switch{
   height: 50px;
@@ -100,7 +92,7 @@ header a {
 }
 
 header a:hover {
-  color: var(--secondary);
+  color: white;
   text-decoration: underline;
   transform: scale(1.05);
 }
@@ -247,6 +239,8 @@ nav button {
   padding: 6px 10px;
   font-family: 'Lora', serif;
 }
+
+
 
 input.input-error,
 select.input-error {

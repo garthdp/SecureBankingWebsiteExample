@@ -1,34 +1,11 @@
 :root{
-  --base-color: #282c34;
-  --base-variant: #23252a;
+  --base-color: black;
+  --base-variant: black;
   --text-color: white;
-  --secondary-text: #232738;
-  --primary-color: #3a435d;
+  --secondary-text: black;
+  --primary-color: black;
   --accent-color: #61dafb;
   --boarder-color: #fc8181;
-}
-.darkmode{
-  --base-color: white;
-  --base-variant: rgba(255, 255, 255, 0.807);
-  --text-color: black;
-  --secondary-text: #232738;
-  --primary-color: #3a435d;
-  --accent-color: #61dafb;
-  --boarder-color: #fc8181;
-}
-
-#theme-switch{
-  height: 50px;
-  width:50px;
-  padding: 0;
-  border-radius: 50%;
-  background-color: var(--base-variant);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#theme-switch svg{
-  fill: var(--primary-color);
 }
 
 
@@ -48,7 +25,7 @@
 }
 
 .App-header {
-  background-color: var(--base-color);
+  background-color: black;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -59,7 +36,7 @@
 }
 
 .App-link {
-  color: var(--accent-color);
+  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
@@ -73,7 +50,7 @@
 
 input.input-error, 
 select,input-error {
-  border-color: var(--boarder-color);
+  border-color:  #fc8181;
 }
 
 button.disabled{

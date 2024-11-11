@@ -1,54 +1,29 @@
-:root {
-    --primary: #30D5C8; 
-    --secondary: #00000085; 
-    --error: #d9301d; 
-    --background: #000000; 
-    --text-color: #30D5C8; 
-    --ok: #26F801; 
-    --white: white;
-  }
-  .darkmode{
-    --primary: #30D5C8; 
-    --secondary: white; 
-    --error: #d9301d; 
-    --background: #000000; 
-    --header-bg: #1a1a1a; 
-    --text-color: #30D5C8; 
-    --ok: #26F801; 
-    --white: black;
-  }
-  
-  #theme-switch{
-    height: 50px;
-    width:50px;
-    padding: 0;
-    border-radius: 50%;
-    background-color: var(--secondary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  #theme-switch svg{
-    fill: var(--primary-color);
-  }
-  #theme-switch svg:last-child{
-    display: none;
-  }
-  .darkmode #theme-switch svg:first-child{
-    display: none;
-  }
-  .darkmode #theme-switch svg:last-child{
-    display: block;
-  }
+
+head{
+    background: #222222;
+    background-color: #222222;
+}
+.logo {
+    max-width: 150px; 
+    height: auto;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
 
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: var(--secondary);
-    color: var(--primary);
+    background: #222222;
+    color: cyan;
 }
 
 .welcome-page {
+    background: #222222;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -97,6 +72,7 @@ body {
     font-size: 3rem;
     margin-bottom: 0.5rem;
     animation: scaleRotateTitle 2s ease-out;
+    background: #222222;
 }
 
 .subtitle {
@@ -106,6 +82,7 @@ body {
 }
 
 .button-container {
+    background-color:#222222;
     display: flex;
     gap: 2rem;
 }
@@ -114,7 +91,7 @@ body {
     padding: 1rem 2rem;
     font-size: 1.2rem;
     color: black;
-    background-color: var(--white);
+    background-color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -124,11 +101,12 @@ body {
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: var(--secondary);
-    color: var(--primary);
+    background-color: #222222;
+    color: cyan;
 }
 
 .welcome-page {
+    background-color: #222222;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -186,6 +164,7 @@ body {
 }
 
 .button-container {
+    background-color: #222222;
     display: flex;
     gap: 2rem;
 }
@@ -193,8 +172,8 @@ body {
 .glow-button {
     padding: 1rem 2rem;
     font-size: 1.2rem;
-    color: var(--secondary);
-    background-color: var(--white);
+    color: black;
+    background-color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -202,7 +181,7 @@ body {
 }
 
 .glow-button:hover {
-    background-color: var(--white);
+    background-color: white;
     color: black;
     box-shadow: 0 0 10px cyan, 0 0 20px cyan;
     transform: scale(1.05);
