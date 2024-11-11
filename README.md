@@ -6,11 +6,16 @@ youtube video = [https://youtu.be/2E_glYXZ6kU](https://youtu.be/_B-1xBYK-2A)
 The video shows the installation steps on how to install and run the application.
 
 User account 
+
 email = garthdp4@gmail.com
+
 password = Password123!
 
+
 Employee account
+
 email = admin@admin.com
+
 password = Password123!
 
 Image of different accounts.
