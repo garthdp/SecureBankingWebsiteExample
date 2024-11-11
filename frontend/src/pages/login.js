@@ -9,6 +9,13 @@ const Login = () => {
     var [captchaToken, setCaptchaToken] = useState(null)
     const recaptchaRef = useRef(null)
 
+    /* 
+Code Attribution
+Title:reCAPTCHA v2  
+Author: google
+post link: https://developers.google.com/recaptcha/docs/display
+Usage: to implement reCAPTCHA checkbox
+*/
     const handleCaptchaChange = (token) => {
         setCaptchaToken(token);
     };
@@ -59,9 +66,15 @@ const Login = () => {
                 required
                 onBlur={handleBlur}
                 className={errors.password && touched.password  ? "input-error" : ""}
-            />
-            {errors.password && touched.password && <p className="error">{errors.password}</p>}
-
+                /*
+            Code Attribution
+            Title:reCAPTCHA v2  
+            Author: google
+            post link: https://developers.google.com/recaptcha/docs/display
+            Usage: to implement reCAPTCHA checkbox
+            */
+            />            
+            {errors.password && touched.password && <p className="error">{errors.password}</p>}            
             <ReCAPTCHA
                 sitekey="6LdPjHoqAAAAABfnhV_t1d0sGJZ2Rf7l4cPYM1Mt"  
                 onChange={handleCaptchaChange}
