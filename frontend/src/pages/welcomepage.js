@@ -4,7 +4,10 @@ import './WelcomePage.css';
 
 const WelcomePage = () => {
     return (
+        
         <div className="welcome-page">
+            
+      <button id="theme-switch"></button>
             <h1 className="title">Welcome to Your Transactions!</h1>
             <p className="subtitle">Get started by logging in or signing up!</p>
             <div className="button-container">

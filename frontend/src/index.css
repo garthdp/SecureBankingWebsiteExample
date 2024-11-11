@@ -3,13 +3,45 @@
 
 /* Layout */
 :root {
-  --primary: #30D5C8;
-  --secondary: #00000085;
-  --error: #d9301d;
-  --background: #000000;
-  --header-bg: #1a1a1a;
-  --text-color: #30D5C8;
-  --ok: #26F801;
+  --primary: #30D5C8; 
+  --secondary: #00000085; 
+  --error: #d9301d; 
+  --background: #000000; 
+  --header-bg: #1a1a1a; 
+  --text-color: #30D5C8; 
+  --ok: #26F801; 
+}
+.darkmode{
+  --primary: #30D5C8; 
+  --secondary: #00000085; 
+  --error: #d9301d; 
+  --background: #000000; 
+  --header-bg: #1a1a1a; 
+  --text-color: #30D5C8; 
+  --ok: #26F801; 
+}
+
+#theme-switch{
+  height: 50px;
+  width:50px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: var(--base-variant);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#theme-switch svg{
+  fill: var(--primary-color);
+}
+#theme-switch svg:last-child{
+  display: none;
+}
+.darkmode #theme-switch svg:first-child{
+  display: none;
+}
+.darkmode #theme-switch svg:last-child{
+  display: block;
 }
 
 body {
