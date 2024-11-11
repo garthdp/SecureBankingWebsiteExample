@@ -1,6 +1,7 @@
 const Transactions = require('../models/transactionModel')
 const mongoose = require('mongoose')
 const crypto = require('crypto-js')
+const validator = require('validator')
 require('dotenv').config()
 
 const getAllTransactions = async (req, res) => {
@@ -44,7 +45,13 @@ const verifyTransaction = async (req, res) => {
 
 //get transactions
 const getTransactions = async(req, res) => {
-    const {providerEmail} = req.query
+    var {providerEmail} = req.query
+
+    if (!validator.isEmail(providerEmail)) {
+        return res.status(400).json({ error: "Invalid provider email format." })
+    }
+    providerEmail = validator.normalizeEmail(providerEmail)
+
     try{
         // finds users transactions
         const transactions = await Transactions.find({providerEmail}).sort({createAt: -1})

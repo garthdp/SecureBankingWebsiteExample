@@ -18,11 +18,8 @@ const Login = () => {
         console.log(actions)
         
         await login(values.email, values.password,captchaToken)
-
-        if (error) {
-            setCaptchaToken(null)
-            recaptchaRef.current.reset()
-        }
+        setCaptchaToken(null)
+        recaptchaRef.current.reset()
     };  
 
     const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
