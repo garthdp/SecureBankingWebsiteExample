@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "e2a892f9-3c9a-4100-8614-33ea95f22df7",
+		"name": "Test Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37399885"
+	},
+	"item": [
+		{
+			"name": "https://localhost:4000/api/users/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"test@test.com\",\r\n    \"password\": \"Password123!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:4000/api/users/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:4000/api/users/signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Test\",\r\n    \"surname\": \"Test\",\r\n    \"idNumber\" : \"1234\",\r\n    \"accountNumber\" : \"1234\",\r\n    \"email\" : \"test@test.com\",\r\n    \"password\" : \"Password123!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:4000/api/users/signup",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:4000/api/transaction",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:4000/api/transaction/all",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"transaction",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:4000/api/transaction/verify/673094d73582b6b7c9d2f5ab",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"673094d73582b6b7c9d2f5ab\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:4000/api/transaction/verify/673094d73582b6b7c9d2f5ab",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"transaction",
+						"verify",
+						"673094d73582b6b7c9d2f5ab"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:4000/api/transaction?providerEmail=garthdp4@gmail.com",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:4000/api/transaction?providerEmail=garthdp4@gmail.com",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"transaction"
+					],
+					"query": [
+						{
+							"key": "providerEmail",
+							"value": "garthdp4@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
