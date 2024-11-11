@@ -48,9 +48,9 @@ const getTransactions = async(req, res) => {
     var {providerEmail} = req.query
 
     if (!validator.isEmail(providerEmail)) {
-        return res.status(400).json({ error: "Invalid provider email format." });
+        return res.status(400).json({ error: "Invalid provider email format." })
     }
-    providerEmail = validator.normalizeEmail(providerEmail);
+    providerEmail = validator.normalizeEmail(providerEmail)
 
     try{
         // finds users transactions
